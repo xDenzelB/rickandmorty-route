@@ -1,13 +1,13 @@
 export async function rickAndMortyFetch() {
-  const response = await fetch('https://rickandmortyapi.com/api/character');
-  const data = response.json();
-  const results = data.results;
-
-  results.map(item => ({
-    name: item.name,
-    status: item.status,
-    img: item.image,
-  }));
+  const statusParam = new URLSearchParams(location.search).get('status');
+  
+  const url =
+    statusParam === 'all' || !statusParam
+      ? 'https://rickandmortyapi.com/api/character'
+      : `https://rickandmortyapi.com/api/character?status=${statusParam}`;
+  const response = await fetch(url)
+  const { results } = await response.json();
+  
 
   return results;
 }
