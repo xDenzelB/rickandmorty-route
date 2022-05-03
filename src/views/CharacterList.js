@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import { rickAndMortyFetch } from "../services/fetch-utils"
 
@@ -15,9 +15,12 @@ export default function CharacterList() {
   };
 
   useEffect(() => {
-    const fetchCharacters = rickAndMortyFetch();
-    setCharacters(fetchCharacters);
-    setLoading(false);
+    const getCharacters = async () => {
+      const characterList = await rickAndMortyFetch();
+      setCharacters(characterList);
+      setLoading(false);
+    }
+    getCharacters();
   }, [location.search])
   return (
     <div>
@@ -31,9 +34,17 @@ export default function CharacterList() {
             <option value='all'>All</option>
             <option value='alive'>alive</option>
             <option value='dead'>dead</option>
-            <option value='unkown'>unkown</option>
+            <option value='unknown'>unkown</option>
           </select>
-
+          {characters.map((character) => (
+            <article key={character.id}>
+              <Link to={`/character${character.id}`}>
+                <h3>{character.name}</h3>
+              </Link>
+              <p>{character.species}</p>
+              <p>{character.status}</p>
+            </article>
+          ))}
         </section>
       )}
 
