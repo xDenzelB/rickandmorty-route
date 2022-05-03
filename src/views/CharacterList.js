@@ -39,7 +39,7 @@ export default function CharacterList() {
           <div className={style.box}>
             {characters.map((character) => (
               <article className={style.rick} key={character.id}>
-                <Link to={`/character${character.id}`}>
+                <Link to={`/characters/${character.id}`}>
                   <h3>{character.name}</h3>
                   <img src={character.image} />
                 </Link>
