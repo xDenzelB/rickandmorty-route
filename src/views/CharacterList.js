@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { useLocation, Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import { rickAndMortyFetch } from "../services/fetch-utils"
-
+import style from './app.css'
 export default function CharacterList() {
   const history = useHistory();
   const location = useLocation();
@@ -36,15 +36,18 @@ export default function CharacterList() {
             <option value='dead'>dead</option>
             <option value='unknown'>unkown</option>
           </select>
-          {characters.map((character) => (
-            <article key={character.id}>
-              <Link to={`/character${character.id}`}>
-                <h3>{character.name}</h3>
-              </Link>
-              <p>{character.species}</p>
-              <p>{character.status}</p>
-            </article>
-          ))}
+          <div className={style.box}>
+            {characters.map((character) => (
+              <article className={style.rick} key={character.id}>
+                <Link to={`/character${character.id}`}>
+                  <h3>{character.name}</h3>
+                  <img src={character.image} />
+                </Link>
+                <p>Species: {character.species}</p>
+                <p>Status: {character.status}</p>
+              </article>
+            ))}
+          </div>
         </section>
       )}
 
