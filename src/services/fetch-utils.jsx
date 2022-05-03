@@ -1,3 +1,5 @@
+import { useParams } from "react-router-dom";
+
 export async function rickAndMortyFetch() {
   const statusParam = new URLSearchParams(location.search).get('status');
   
@@ -10,4 +12,13 @@ export async function rickAndMortyFetch() {
   
 
   return results;
+}
+
+export async function singleCharacter() { 
+  const { id } = useParams();
+
+  const res = await fetch(`https://rickandmortyapi.com/api/character/${id}`);
+  const data = await res.json();
+
+  return data;
 }
