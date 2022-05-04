@@ -34,7 +34,7 @@ export default function CharacterList() {
             <option value='all'>All</option>
             <option value='alive'>alive</option>
             <option value='dead'>dead</option>
-            <option value='unknown'>unkown</option>
+            <option value='unknown'>unknown</option>
           </select>
           <div className={style.box}>
             {characters.map((character) => (

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
 import { useParams } from "react-router-dom";
+import style from './app.css';
 export default function CharacterDetail() {
   const { id } = useParams();
   const [character, setCharacters] = useState({});
@@ -22,10 +23,10 @@ export default function CharacterDetail() {
       {loading ? (
         <p>Loading character...</p>
       ) : (
-        <article>
+        <article className={style.rick}>
           <h2>{character.name}</h2>
-          <p>{character.species}</p>
-          <p>{character.status}</p>
+          <p>Species: {character.species}</p>
+          <p>Status: {character.status}</p>
           <img alt="Image" src={character.image} />
         </article>
       )}
